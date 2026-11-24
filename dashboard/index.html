@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launch Radar — pre-token protocols, priced</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">LR</div>
+    <div>
+      <h1>Launch Radar</h1>
+      <p class="tagline">Protocols that record no token yet, ranked by what a launch would be worth.</p>
+    </div>
+  </div>
+  <div class="chips" id="chips"></div>
+</header>
+
+<section class="model-strip" id="model-strip"></section>
+
+<section class="controls" id="controls">
+  <input id="q" type="search" placeholder="Search name or slug…" autocomplete="off">
+  <select id="cat"><option value="">All categories</option></select>
+  <select id="chain"><option value="">All chains</option></select>
+  <select id="verdict">
+    <option value="">All verdicts</option>
+    <option>Farm first</option>
+    <option>Worth farming</option>
+    <option>Small test position</option>
+    <option>Watch only</option>
+  </select>
+  <label class="toggle"><input id="watch" type="checkbox"> Watchlist only</label>
+  <select id="sort">
+    <option value="rank">Sort: implied value</option>
+    <option value="tvl">Sort: TVL</option>
+    <option value="growth">Sort: 7d growth</option>
+    <option value="age">Sort: age</option>
+    <option value="peer">Sort: peer token rate</option>
+  </select>
+  <span class="count" id="count"></span>
+</section>
+
+<main id="board-view">
+  <table class="board">
+    <thead>
+      <tr>
+        <th class="num">#</th>
+        <th>Protocol</th>
+        <th>Category</th>
+        <th class="num">TVL</th>
+        <th class="num">7d</th>
+        <th class="num">Age</th>
+        <th>Implied launch value <span class="th-note">(80% interval)</span></th>
+        <th class="num">Peers tokenized</th>
+        <th>Verdict</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="empty" id="empty" hidden>No protocol matches those filters. Loosen one and the board fills again.</p>
+</main>
+
+<main id="detail-view" hidden></main>
+
+<section class="live-strip">
+  <h2>Already trading — set aside, not ranked</h2>
+  <p class="live-note">These protocols' tokens already trade, so the market prices them and no model here does. They are the
+  training set the fitted model learned from: 144 records carried a market cap, and 123 of them, inside the
+  model's ratio band, taught it what a launch is worth at a given TVL, age and week of growth.</p>
+  <div class="live-grid" id="live"></div>
+</section>
+
+<footer class="method" id="method"></footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
